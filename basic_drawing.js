@@ -5,17 +5,17 @@
 	var red = Color(255,0,0);
 	var green = Color(0,255,0);
 	var blue = Color(0,0,255);
-    
+
 	// create the drawing pad object and associate with the canvas
 	pad = Pad(document.getElementById('canvas'));
 	pad.clear();
-    
+
 	// set constants to be able to scale to any canvas size
 	var MAX_X = 100;
 	var MAX_Y = 100;
 	var x_factor = pad.get_width() / MAX_X;
 	var y_factor = pad.get_height() / MAX_Y;
-  
+
 	// draw a box
 	pad.draw_rectangle(Coord(0, 0), pad.get_width(), pad.get_height(), 10, black);
 

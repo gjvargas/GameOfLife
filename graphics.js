@@ -1,5 +1,7 @@
 // a very simple graphics library using HTML5 canvas features
 
+
+console.log(6%5);
 // constructor for 2D coordinate
 var Coord = function (x, y) {
 	return {x:x, y:y};
@@ -17,7 +19,7 @@ var Pad = function (canvas) {
   	canvas.style.height='100%';
   	canvas.width  = canvas.offsetWidth;
   	canvas.height = canvas.offsetHeight;
-	
+
 	var DEFAULT_CIRCLE_RADIUS = 5;
 	var DEFAULT_LINE_WIDTH = 2;
 
