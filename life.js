@@ -1,8 +1,10 @@
 (function() {
   var organisms = [];
-  var matrixSize = 200;
+
+  var previous = [];
+  var matrixSize = 150;
   var lifeDensity = 0.05;
-  var white = Color(255,255,255)
+  var white = Color(255,255,255);
   var grey = Color(96,96,96);
   var yellow = Color(200, 231, 174);
 
@@ -12,10 +14,13 @@
   init();
 
   function init() {
-    for(i = 0; i < matrixSize; i++) {
+
+    for(var i = 0; i < matrixSize; i++) {
       organisms.push([]);
-      for(j = 0; j < matrixSize; j++) {
+      previous.push([]);
+      for(var j = 0; j < matrixSize; j++) {
         organisms[i].push(weightedRound(Math.random()));
+        previous[i].push(0);
       }
     }
     draw();
@@ -29,6 +34,11 @@
   }
 
   function step() {
+    for (var i = 0; i < matrixSize; i++) {
+      for (var j = 0; j < matrixSize; j++) {
+        previous[i][j] = organisms[i][j];
+      }
+    }
     for (var i = 0; i < matrixSize; i++) {
       for (var j = 0; j < matrixSize; j++) {
         switch(numNeighbors(i, j)) {
@@ -49,14 +59,14 @@
   }
 
   function numNeighbors(i, j) {
-    return organisms[(i+matrixSize-1)%matrixSize][(j+matrixSize-1)%matrixSize]
-          + organisms[i][(j+matrixSize-1)%matrixSize]
-          + organisms[(i+1)%matrixSize][(j+matrixSize-1)%matrixSize]
-          + organisms[(i+matrixSize-1)%matrixSize][j]
-          + organisms[(i+1)%matrixSize][j]
-          + organisms[(i+matrixSize-1)%matrixSize][(j+1)%matrixSize]
-          + organisms[i][(j+1)%matrixSize]
-          + organisms[(i+1)%matrixSize][(j+1)%matrixSize];
+    return previous[(i+matrixSize-1)%matrixSize][(j+matrixSize-1)%matrixSize]
+          + previous[i][(j+matrixSize-1)%matrixSize]
+          + previous[(i+1)%matrixSize][(j+matrixSize-1)%matrixSize]
+          + previous[(i+matrixSize-1)%matrixSize][j]
+          + previous[(i+1)%matrixSize][j]
+          + previous[(i+matrixSize-1)%matrixSize][(j+1)%matrixSize]
+          + previous[i][(j+1)%matrixSize]
+          + previous[(i+1)%matrixSize][(j+1)%matrixSize];
   }
 
 
@@ -66,14 +76,14 @@
     var cellHeight = pad.get_height() / matrixSize;
 
     pad.clear();
-    pad.draw_rectangle(Coord(0, 0), pad.get_width(), pad.get_height(), 10, white);
+    pad.draw_rectangle(Coord(0, 0), pad.get_width(), pad.get_height(), 10, white, grey);
 
     for (var i = 0; i < matrixSize; i++) {
       for (var j = 0; j < matrixSize; j++) {
         // select circle or square according some arbitrary criterion
         if (organisms[i][j] == 1) {
-          pad.draw_rectangle(Coord((i)*cellWidth, (j)*cellHeight),
-            cellWidth, cellHeight, 0, yellow, yellow);
+          pad.draw_circle(Coord((i)*cellWidth, (j)*cellHeight),
+            cellWidth/2, 1, grey, yellow);
         } else {
           pad.draw_rectangle(Coord((i)*cellWidth, (j)*cellHeight),
             cellWidth, cellHeight, 0, grey, grey);
