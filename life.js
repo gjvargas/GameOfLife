@@ -2,8 +2,8 @@
   var organisms = [];
 
   var previous = [];
-  var matrixSize = 150;
-  var lifeDensity = 0.05;
+  var matrixSize = 125;
+  var lifeDensity = 0.3;
   var white = Color(255,255,255);
   var grey = Color(96,96,96);
   var yellow = Color(200, 231, 174);
@@ -76,17 +76,17 @@
     var cellHeight = pad.get_height() / matrixSize;
 
     pad.clear();
-    pad.draw_rectangle(Coord(0, 0), pad.get_width(), pad.get_height(), 10, white, grey);
+    pad.draw_rectangle(Coord(0, 0), pad.get_width(), pad.get_height(), 10, grey, grey);
 
     for (var i = 0; i < matrixSize; i++) {
       for (var j = 0; j < matrixSize; j++) {
         // select circle or square according some arbitrary criterion
         if (organisms[i][j] == 1) {
-          pad.draw_circle(Coord((i)*cellWidth, (j)*cellHeight),
-            cellWidth/2, 1, grey, yellow);
+          pad.draw_circle(Coord((i)*cellWidth + cellWidth/2, (j)*cellHeight + cellWidth/2),
+            cellWidth/2, 0, grey, yellow);
         } else {
           pad.draw_rectangle(Coord((i)*cellWidth, (j)*cellHeight),
-            cellWidth, cellHeight, 0, grey, grey);
+            cellWidth, cellHeight, grey);
         }
       }
     }
