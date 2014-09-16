@@ -1,11 +1,9 @@
+/* Sets the web page's background color */
 body {
   background-color: #CDCDCD
 }
 
-.futura {
-	font-family: Futura, Verdana, Sans-Serif;
-}
-
+/* Sets the text format for any h1 headers throughout the web page */
 h1 {
   margin: 0;
   font-size: 30px;
@@ -13,6 +11,7 @@ h1 {
   color: #371881
 }
 
+/* Sets the format for the divider line in the web page */
 hr {
    display: block;
    position: relative;
@@ -28,10 +27,15 @@ hr {
    border-top: 1px solid #371881;
    border-bottom: 1px solid #371881;
 }
+
+/* Sets format for title specifically. */
 #title {
+    text-align: center;
     color: white;
     text-shadow: -2px 0 #371881, 0 2px #371881, 2px 0 #371881, 0 -2px #371881;
 }
+
+/* Sets aesthetic attributes of the canvas */
 #canvas_container {
   padding-left: 0;
   padding-right: 0;
@@ -48,8 +52,4 @@ hr {
   display: block;
   width: 1200px;
   height: 600px;
-}
-
-#welcome {
-  text-align: center;
 }
