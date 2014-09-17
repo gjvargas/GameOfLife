@@ -21,4 +21,25 @@ that the correct matrix size is produced. Overall, I think my design was pretty 
 engineering-wise with adequate testing, but not so much aesthetically. I will work
 to improve that next week.
 
-Here are my github links to my line numbers:
+Notes on running: see lines 25-31
+init(); runs the program
+runTests(); runs the tests
+Please don't run both at the same time
+
+Also I'm sorry that everything is in one file. It sucks I know (especially
+the tests) but that's what it said to do on Piazza so I'm just following
+instructions. :P
+
+Here are my github links to my line numbers you should look at:
+
+Closure and its purpose:
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L1-L4
+
+Switch case with simplified logic
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L86-L99
+
+Timeout callback for consistency when updating automatically:
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L144-L146
+
+Could you provide feedback on this comment:
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L69-L76
