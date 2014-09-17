@@ -5,7 +5,7 @@
 
   var lifeDensity = 0.13;
   var white = Color(240,230,230);
-  var grey = Color(235, 235, 235);
+  var grey = Color(255, 255, 255);
   var yellow = Color(200, 211, 174);
   var purple = Color(55, 24, 81);
 
@@ -14,10 +14,17 @@
   var matrixWidth = pad.get_width() / 12;
   var matrixHeight = pad.get_height() / 12;
 
-  init();
+  //init();
+  //draw();
+
+  // test calls follow this line.
+  // To test, comment init(); and draw(); above and
+  // uncomment the test lines below. results will
+  // be output to the javascript console
+  testInit();
+  testWeightedRound();
 
   function init() {
-
     for(var i = 0; i < matrixHeight; i++) {
       organisms.push([]);
       previous.push([]);
@@ -26,7 +33,6 @@
         previous[i].push(0);
       }
     }
-    draw();
   }
 
   function weightedRound(x) {
@@ -95,4 +101,43 @@
     }
     window.setTimeout(step, 500);
   }
+
+  function testInit() {
+    init();
+    console.log("Init Test:");
+    if(organisms.length == matrixHeight && organisms[0].length == matrixWidth
+        && previous.length == matrixHeight && previous[0].length == matrixWidth) {
+          console.log("Pass. Array has correct dimensions.\n");
+    }
+    else {
+      console.log("Fail. Array has incorrect dimensions");
+    }
+  }
+
+  function testWeightedRound() {
+    console.log("Life Density is " + lifeDensity + "\nNumbers greater than"
+      + " this value should return 0, and any other number should return 1.");
+    console.log("Weighted round of 0 = " + weightedRound(0));
+    if(weightedRound(0) == 1) {
+      console.log("Pass");
+    }
+    else {
+      console.log("Fail");
+    }
+    console.log("Weighted round of " + lifeDensity + " = " + weightedRound(lifeDensity));
+    if(weightedRound(lifeDensity) == 1) {
+      console.log("Pass");
+    }
+    else {
+      console.log("Fail");
+    }
+    console.log("Weighted round of 1 = " + weightedRound(1));
+    if(weightedRound(1) == 0) {
+      console.log("Pass");
+    }
+    else {
+      console.log("Fail");
+    }
+  }
+
 }) ();
