@@ -2,6 +2,8 @@
 // so that no user can alter my javascript variables through input that I will
 // add for the final project submission.
 (function() {
+  //used for testing purposes
+  var test = false;
   //Two states for the 'ecosystem'.
   //organisms is the current state, and previous is the previous state
   var organisms = [];
@@ -20,15 +22,24 @@
   var matrixWidth = pad.get_width() / 12;
   var matrixHeight = pad.get_height() / 12;
 
-  //init();
-  // Initiating the matrices containing the states of the ecosystem
-  //draw();
-  // test calls follow this line.
-  // To test, comment init(); and draw(); above and
-  // uncomment the test lines below. results will
+  // Calling init() gets things started
+  init();
+
+  // To test, comment init(); above and
+  // uncomment the test runner below. results will
   // be output to the javascript console
-  testInit();
-  testWeightedRound();
+  //runTests();
+
+
+  function runTests() {
+    test = true;
+    testInit();
+    testWeightedRound();
+    testNeighbors();
+    testStep();
+  }
+
+  // Initiating the matrices containing the states of the ecosystem
   function init() {
     for(var i = 0; i < matrixHeight; i++) {
       organisms.push([]);
@@ -39,6 +50,9 @@
         // the previous state begins as all 0
         previous[i].push(0);
       }
+    }
+    if(!test) {
+      draw();
     }
   }
 
@@ -85,7 +99,10 @@
         }
       }
     }
-    draw();
+    if(!test) {
+      draw();
+    }
+
   }
 
   // Helper function that determines the number of neighbors a cell
@@ -129,6 +146,7 @@
     window.setTimeout(step, 500);
   }
 
+  //This tests to see if init() creates the right matrix size on startup
   function testInit() {
     init();
     console.log("Init Test:");
@@ -141,6 +159,7 @@
     }
   }
 
+  // This tests all the major edge cases for weightedRound
   function testWeightedRound() {
     console.log("Life Density is " + lifeDensity + "\nNumbers greater than"
       + " this value should return 0, and any other number should return 1.");
@@ -160,11 +179,62 @@
     }
     console.log("Weighted round of 1 = " + weightedRound(1));
     if(weightedRound(1) == 0) {
-      console.log("Pass");
+      console.log("Pass\n");
     }
     else {
-      console.log("Fail");
+      console.log("Fail\n");
     }
+  }
+
+  // This tests for every possible number of neighbors that can be
+  // returned by numNeighbors();
+  function testNeighbors() {
+    previous = [
+    [0,0,0, 1,0,0, 1,1,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1],
+    [0,1,0, 0,1,0, 0,1,0, 0,1,0, 1,1,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1],
+    [0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 1,0,0, 1,1,0, 1,1,1]
+    ];
+    matrixHeight = 3;
+    matrixWidth = 27;
+    console.log("Testing all possible number of neighbors...");
+    if(numNeighbors(1,1) == 0 && numNeighbors(1,4) == 1 &&
+      numNeighbors(1,7) == 2 && numNeighbors(1,10) == 3 &&
+      numNeighbors(1,13) == 4 && numNeighbors(1,16) == 5 &&
+      numNeighbors(1,19) == 6 && numNeighbors(1,22) == 7 &&
+      numNeighbors(1,25) == 8) {
+          console.log("All tests passed!\n");
+    }
+    else {
+      console.log("Oh no! One or more numNeighbor tests have failed. :(\n");
+    }
+  }
+
+  // This tests step with a data set that contains all possible number of
+  // neighbors for both one and 0.
+  function testStep() {
+    organisms = [
+    [0,0,0, 1,0,0, 1,1,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1],
+    [0,1,0, 0,1,0, 0,1,0, 0,1,0, 1,1,0, 1,1,1, 1,1,1, 1,1,1, 1,1,1],
+    [0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 1,0,0, 1,1,0, 1,1,1]
+    ];
+    var expected = [
+    [0,0,0, 0,0,0, 1,1,1, 1,1,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0],
+    [0,0,0, 0,0,0, 1,1,1, 1,1,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0],
+    [0,0,0, 0,0,0, 1,1,1, 1,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0, 0,0,0]
+    ];
+    step();
+    matrixHeight = 3;
+    matrixWidth = 27;
+    console.log("Testing step()...");
+    for(var i = 0; i < matrixHeight; i++) {
+      for(var j = 0; j < matrixWidth; j++) {
+        if(organisms[i][j] != expected[i][j]) {
+          console.log("Test failed\n");
+          return;
+        }
+      }
+    }
+    console.log("Test passed!\n");
   }
 
 }) ();
