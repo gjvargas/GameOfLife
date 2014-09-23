@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="l05.js"></script>
+    <script type="text/javascript" src="reactive.js"></script>
     <script type="text/javascript" src="cellRow.js"></script>
     <link rel="stylesheet" type="text/css" href="stars.css">
 </head>
 
-<body onload="$('#stargoeshere').append(rowWidget(function(i) {console.log('Select ' + i); }));">
-  <div id="stargoeshere"></div>
-  <div class="hexa gon">HEXAGON</div>
+<body onload="$('#stargoeshere').append(rowWidget(function(i) {console.log('Select ' + i); }));
+              $('#second').append(rowWidget(function(i) {console.log('Select ' + i); }));">
+  <div class="row">
+    <div id="stargoeshere"></div>
+    <div class="blank"></div>
+    <div class="blank"></div>
+    <div id="second"></div>
+  </div>
 </body>
+<!--
+<body onload="var signup = reactiveTextbox();
+                var many = starsWidget(['Clover', 'Couscous Kitchen', 'Jerusalem Cafe (former)', 'Jose\'s Mexican', 'Momogoose']);
+                $('#here')
+                .append($('<div>')
+                  .append($('<span>').text('Sign up here: '))
+                  .append(signup.node))
+                .append(many.node)">
+    <div class="star"></div>
+    <div class="blank"></div>
+    <div id="here"></div>
+  </body>
+-->
 </html>

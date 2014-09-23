@@ -1,5 +1,5 @@
 function rowWidget(onChange) {
-  var life = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  var life = [0,0,0,0,0,0,0,0,0,0];
 
   var row = Array.create(function(i) {
     return $("<span>")
@@ -22,7 +22,7 @@ function rowWidget(onChange) {
       }
       updateSprite(i);
     })
-  }, 15);
+  }, 8);
 
   function updateSprite(i) {
     $(row[i]).removeClass();
@@ -47,4 +47,28 @@ Array.create = function(f, count) {
     }
 
     return arr;
+}
+
+
+// A derived widget: a sequence of stars widgets, with label text on each.
+// Returns a node and a signal of the _highest_ selection.
+function starsWidget(labels) {
+    var stars = labels.map(function(label) {
+        var star = rowWidget(function(i) {
+          console.log(i);
+        });
+        // Notice how pleasant it is to use the existing widget here as a simple building block. :)
+
+        return {node: $("<div>")
+                .append(star.node)
+                .append($("<span>").text(label)),
+                signal: star.signal};
+    });
+
+    return {node: $("<div>").append(stars.map(function(star) {
+        return star.node;
+    })),
+            signal: null
+
+    }
 }
