@@ -7,23 +7,44 @@ function rowWidget(onChange) {
     .addClass("star star-basic")
 
     .mouseenter(function() {
-          row[i].removeClass()
-            row[i].addClass("star star-hover");
+          $(row[i]).removeClass()
+            .addClass("star star-hover");
     })
 
     .mouseleave(function() {
-      updateSprite();
+      updateSprite(i);
     })
 
     .click(function() {
+      life[i] ^= 1;
       if(onChange) {
         onChange(i);
       }
-      updateSprite();
+      updateSprite(i);
     })
   }, 15);
 
   function updateSprite(i) {
-    if()
+    $(row[i]).removeClass();
+    if(life[i] == 1) {
+      $(row[i]).addClass("star star-on");
+    }
+    else {
+      $(row[i]).addClass("star star-basic");
+    }
   }
+
+  return $("<div>").append(row);
+}
+
+// Functional to create a new length-'count' array,
+// by calling a function that many times, each time passing it the current index.
+Array.create = function(f, count) {
+    var arr = [];
+
+    for (var i = 0; i < count; ++i) {
+        arr.push(f(i));
+    }
+
+    return arr;
 }

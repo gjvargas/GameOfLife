@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="cellRow.js"></script>
+    <link rel="stylesheet" type="text/css" href="stars.css">
+</head>
+
+<body onload="$('#stargoeshere').append(rowWidget(function(i) {console.log('Select ' + i); }));">
+  <div id="stargoeshere"></div>
+</body>
+</html>
