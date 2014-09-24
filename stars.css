@@ -21,12 +21,12 @@
   border-radius: 10%;
 }
 .star {
-  width: 70px;
-  height: 80px;
+  width: 42px;
+  height: 48px;
   background: url(red.png) no-repeat 50% 50%;
   background-size: 206px 206px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .star-basic {
   background: url(black.png) no-repeat 50% 50%;
@@ -43,22 +43,17 @@
   float: left;
 
   background-color: #444444;
-  width: 45px;
-  height: 80px;
+  width: 26px;
+  height: 48px;
 }
 
 .row{
-  width: 765px;
-  height: 80px;
-}
-
-.gap{
-  width: 20px;
-  height: 80px;
+  width: 546px;
+  height: 48px;
 }
 
 .indent{
-  margin-left: 55px;
+  margin-left: 26px;
 }
 
 body{

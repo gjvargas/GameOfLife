@@ -1,13 +1,15 @@
 function rowWidget(onChange) {
   var life = [
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0]
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
   ];
   var matrix = Array.create(function(j) {
     var row = Array.create(function(i) {
@@ -34,7 +36,7 @@ function rowWidget(onChange) {
         }
         updateSprite(j,i);
       })
-    }, 8);
+    }, 10);
 
     if(j % 2 == 1) {
       $(row[0]).addClass("indent");
@@ -58,7 +60,7 @@ function rowWidget(onChange) {
     //   div.style.marginLeft = "45px";
     // }
     return $("<div>").append(row);
-  }, 8)
+  }, 10)
 
   return $("<div>").append(matrix);
 }
