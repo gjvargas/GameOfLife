@@ -1,40 +1,56 @@
 function rowWidget(onChange) {
-  var life = [0,0,0,0,0,0,0,0,0,0];
+  var life = [
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0]
+  ];
+  var matrix = Array.create(function(j) {
+    var row = Array.create(function(i) {
+      return $("<span>")
 
-  var row = Array.create(function(i) {
-    return $("<span>")
+      .addClass("star star-basic")
 
-    .addClass("star star-basic")
+      .mouseenter(function() {
+            $(row[i]).removeClass()
+              .addClass("star star-hover");
+      })
 
-    .mouseenter(function() {
-          $(row[i]).removeClass()
-            .addClass("star star-hover");
-    })
+      .mouseleave(function() {
+        updateSprite(j,i);
+      })
 
-    .mouseleave(function() {
-      updateSprite(i);
-    })
+      .click(function() {
+        life[j][i] ^= 1;
+        if(onChange) {
+          onChange(i);
+        }
+        updateSprite(j,i);
+      })
+    }, 7);
 
-    .click(function() {
-      life[i] ^= 1;
-      if(onChange) {
-        onChange(i);
+    function updateSprite(j,i) {
+      $(row[i]).removeClass();
+      if(life[j][i] == 1) {
+        $(row[i]).addClass("star star-on");
       }
-      updateSprite(i);
-    })
-  }, 8);
-
-  function updateSprite(i) {
-    $(row[i]).removeClass();
-    if(life[i] == 1) {
-      $(row[i]).addClass("star star-on");
+      else {
+        $(row[i]).addClass("star star-basic");
+      }
     }
-    else {
-      $(row[i]).addClass("star star-basic");
-    }
-  }
 
-  return $("<div>").append(row);
+    // var div = $("<div>");
+    // if(j % 2 == 0) {
+    //   div.style.marginLeft = "45px";
+    // }
+    return $("<div>").append(row);
+  }, 7)
+
+  return $("<div>").append(matrix);
 }
 
 // Functional to create a new length-'count' array,
