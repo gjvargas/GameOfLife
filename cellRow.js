@@ -18,6 +18,9 @@ function rowWidget(onChange) {
       .mouseenter(function() {
             $(row[i]).removeClass()
               .addClass("star star-hover");
+            if(j % 2 == 1) {
+              $(row[0]).addClass("indent");
+            }
       })
 
       .mouseleave(function() {
@@ -31,10 +34,17 @@ function rowWidget(onChange) {
         }
         updateSprite(j,i);
       })
-    }, 7);
+    }, 8);
+
+    if(j % 2 == 1) {
+      $(row[0]).addClass("indent");
+    }
 
     function updateSprite(j,i) {
       $(row[i]).removeClass();
+      if(j % 2 == 1) {
+        $(row[0]).addClass("indent");
+      }
       if(life[j][i] == 1) {
         $(row[i]).addClass("star star-on");
       }
@@ -48,7 +58,7 @@ function rowWidget(onChange) {
     //   div.style.marginLeft = "45px";
     // }
     return $("<div>").append(row);
-  }, 7)
+  }, 8)
 
   return $("<div>").append(matrix);
 }

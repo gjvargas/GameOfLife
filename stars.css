@@ -48,13 +48,17 @@
 }
 
 .row{
-  width: 675px;
+  width: 765px;
   height: 80px;
 }
 
 .gap{
   width: 20px;
   height: 80px;
+}
+
+.indent{
+  margin-left: 55px;
 }
 
 body{
