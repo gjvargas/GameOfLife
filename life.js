@@ -150,6 +150,33 @@ function hexagonalGrid(onChange) {
           + previous[(i+1)%matrixSize][(j+1)%matrixSize];
   }
 
+  function runTests() {
+    randomize();
+    var total = 0;
+    for(var i = 0; i< matrixSize; i++) {
+      for(var j = 0; j < matrixSize; j++) {
+        total += life[i][j];
+      }
+    }
+
+    if(total > 0 ) {
+      console.log("randomize test passed!")
+    }
+    for(var i = 0; i< matrixSize; i++) {
+      for(var j = 0; j < matrixSize; j++) {
+        previous[i][j] = (i + j) % 2;
+      }
+    }
+    console.log(numNeighbors(0,0));
+    console.log(numNeighbors(1,0));
+    if(numNeighbors(0,0) == 3 && numNeighbors(1,0) == 3){
+
+
+      console.log("numNeighbors test passed!");
+    }
+
+  }
+
 
 
   return $("<div>").append(row).addClass("center")
@@ -165,7 +192,9 @@ function hexagonalGrid(onChange) {
                         .append($('<input id="step" type="button" value="Step"/>')
                             .addClass("button")
                             .click(step))
-                        .addClass("center");
+                         .append($('<input id="test" type="button" value="Run Tests"/>')
+                             .addClass("button")
+                             .click(runTests));
 }
 
 // Creates array of size count using function f, just like in lecture
