@@ -43,3 +43,25 @@ https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L144-L146
 
 Could you provide feedback on this comment:
 https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L69-L76
+
+
+//////////////////////////
+Final submission
+So I added hexagonal functionality, and changed the conditions for more excitement.
+Now a cell only lives if it has 3 or 5 neighbors, and is born if it has 2 neighbors.
+I also add user input, start, stop and randomize. NOt much to say, much of this was leftover
+code from the beta.
+
+More links:
+
+Hexagon css that I'm proud of
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.css#L12-23
+
+Used functionals to create DOM just like in class :)
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L16-45
+
+New custom logic for hexagonal number of neighbors
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L136-151
+
+New survival/reproduction logic for optimal hexagonal excitement
+https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L106-120
