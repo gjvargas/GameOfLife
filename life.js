@@ -167,11 +167,7 @@ function hexagonalGrid(onChange) {
         previous[i][j] = (i + j) % 2;
       }
     }
-    console.log(numNeighbors(0,0));
-    console.log(numNeighbors(1,0));
-    if(numNeighbors(0,0) == 3 && numNeighbors(1,0) == 3){
-
-
+    if(numNeighbors(0,0) == 4 && numNeighbors(1,0) == 2){
       console.log("numNeighbors test passed!");
     }
 
@@ -191,10 +187,10 @@ function hexagonalGrid(onChange) {
                             .click(stop))
                         .append($('<input id="step" type="button" value="Step"/>')
                             .addClass("button")
-                            .click(step))
-                         .append($('<input id="test" type="button" value="Run Tests"/>')
-                             .addClass("button")
-                             .click(runTests));
+                            .click(step));
+                        //  .append($('<input id="test" type="button" value="Run Tests"/>')
+                            //  .addClass("button")
+                            //  .click(runTests));
 }
 
 // Creates array of size count using function f, just like in lecture

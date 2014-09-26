@@ -65,3 +65,5 @@ https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L136-151
 
 New survival/reproduction logic for optimal hexagonal excitement
 https://github.com/6170-fa14/gjvargas_proj1/blob/master/life.js#L106-120
+
+Note: to run tests, uncomment runtests button and click on html page. Output in console.
