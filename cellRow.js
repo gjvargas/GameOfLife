@@ -1,9 +1,8 @@
 function hexagonalGrid(onChange) {
   var life = [];
   var previous = []
-
   var matrixSize = 16;
-
+  var going = false;
   for(var i = 0; i < matrixSize; i++) {
     life.push([]);
     previous.push([]);
@@ -13,60 +12,61 @@ function hexagonalGrid(onChange) {
     }
   }
 
-    var row = Array.create(function(i) {
-      return $("<span>")
-        .addClass("hex off")
+  var row = Array.create(function(i) {
+    return $("<span>")
+      .addClass("hex off")
 
-        .mouseenter(function() {
-              $(row[i]).removeClass()
-                .addClass("hex on");
-              if(i % (matrixSize*2) == 0) {
-                $(row[i]).addClass("indent");
-              }
-        })
+      .mouseenter(function() {
+            $(row[i]).removeClass()
+              .addClass("hex on");
+            if(i % (matrixSize*2) == 0) {
+              $(row[i]).addClass("indent");
+            }
+      })
 
-        .mouseleave(function() {
-          updateSprite(i);
-        })
+      .mouseleave(function() {
+        updateSprite(i);
+      })
 
-        .click(function() {
-          life[Math.floor(i/matrixSize)][i%matrixSize] ^= 1;
-          if(onChange) {
-            onChange(i);
-          }
-          updateSprite(i);
-        })
-    }, Math.pow(matrixSize, 2));
+      .click(function() {
+        life[Math.floor(i/matrixSize)][i%matrixSize] ^= 1;
+        if(onChange) {
+          onChange(i);
+        }
+        updateSprite(i);
+      })
+  }, Math.pow(matrixSize, 2));
 
-    for(var i = 0; i < Math.pow(matrixSize, 2); i += matrixSize * 2) {
+  for(var i = 0; i < Math.pow(matrixSize, 2); i += matrixSize * 2) {
+    $(row[i]).addClass("indent");
+  }
+
+  function updateSprite(i) {
+    $(row[i]).removeClass();
+    console.log("update " + i);
+    if(i % (matrixSize*2) == 0) {
       $(row[i]).addClass("indent");
     }
-
-    function updateSprite(i) {
-      $(row[i]).removeClass();
-      console.log("update " + i);
-      if(i % (matrixSize*2) == 0) {
-        $(row[i]).addClass("indent");
-      }
-      if(life[(i/matrixSize)|0][i%matrixSize] == 1) {
-        $(row[i]).addClass("hex on");
-      }
-      else {
-        $(row[i]).addClass("hex off");
-      }
+    if(life[(i/matrixSize)|0][i%matrixSize] == 1) {
+      $(row[i]).addClass("hex on");
     }
+    else {
+      $(row[i]).addClass("hex off");
+    }
+  }
 
   $("#start").click(step);
 
+  function start() {
+    going = true;
+    step();
+  }
+
+  function stop() {
+    going = false;
+  }
+
   function step() {
-    // Load the previous state so we can load the next state
-    // into organisms. Here I use previous as a temporary variable so that I can
-    // alter organisms reliably. I considered using closures to pass the matrix,
-    // updating each cell based on the local matrix, thus requiring only 1 matrix.
-    // Ultimately I decided against it, because 2 global matrices seemed preferrable
-    // to thousands/millions of temporary variable in terms of performance. Is there
-    // a way I might use closures to eliminate this second state (previous) and
-    // maintaining good performance?
     for (var i = 0; i < matrixSize; i++) {
       for (var j = 0; j < matrixSize; j++) {
         previous[i][j] = life[i][j];
@@ -93,8 +93,9 @@ function hexagonalGrid(onChange) {
     for(var x = 0; x < Math.pow(matrixSize, 2); x++) {
       updateSprite(x);
     }
-
-    window.setTimeout(step, 700);
+    if(going) {
+      window.setTimeout(step, 700);
+    }
   }
   // Helper function that determines the number of neighbors a cell
   // had last turn for any given coordinate.
@@ -120,17 +121,22 @@ function hexagonalGrid(onChange) {
           + previous[(i+1)%matrixSize][(j+1)%matrixSize];
   }
 
-  return $("<div>").append(row);
+  return $("<div>").append(row)
+                    .append($('<input id="randomize" type="button" value="Randomize"/>')
+                        .click(step))
+                    .append($('<input id="start" type="button" value="Start"/>')
+                        .click(start))
+                    .append($('<input id="stop" type="button" value="Stop"/>')
+                        .click(stop))
+                    .append($('<input id="step" type="button" value="Step"/>')
+                        .click(step));
 }
 
-// Functional to create a new length-'count' array,
-// by calling a function that many times, each time passing it the current index.
+// Creates array of size count using function f, just like in lecture
 Array.create = function(f, count) {
     var arr = [];
-
     for (var i = 0; i < count; ++i) {
         arr.push(f(i));
     }
-
     return arr;
 }
