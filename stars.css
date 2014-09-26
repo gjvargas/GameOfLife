@@ -1,9 +1,12 @@
-/*
- * DNJ: star widget style sheet
- * Developed by Daniel Jackson for 6.170.
- */
-.star {
-  overflow: hidden; /* crucial: this is what makes it work! */
+body{
+  background-color: #444444;
+}
+
+.hex {
+  width: 28px;
+  height: 32px;
+  margin-left: 4px;
+  margin-right: 4px;
   cursor: pointer;
   float: left;
   -webkit-clip-path: polygon(
@@ -18,44 +21,19 @@
   clip-path: polygon(
     50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%
   ) border-box;
-  border-radius: 10%;
 }
-.star {
-  width: 42px;
-  height: 48px;
-  background: url(red.png) no-repeat 50% 50%;
-  background-size: 206px 206px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-.star-basic {
+
+.off {
   background: url(black.png) no-repeat 50% 50%;
 }
-.star-on {
+.on {
   background: url(red.png) no-repeat 50% 50%;
-}
-.star-hover {
-  background: url(red.png) no-repeat 50% 50%;
-}
-.blank{
-  overflow: hidden; /* crucial: this is what makes it work! */
-  cursor: pointer;
-  float: left;
-
-  background-color: #444444;
-  width: 26px;
-  height: 48px;
 }
 
 .row{
-  width: 546px;
-  height: 48px;
+  width: 594px;
 }
 
 .indent{
-  margin-left: 26px;
-}
-
-body{
-  background-color: #444444;
+  margin-left: 22px;
 }
