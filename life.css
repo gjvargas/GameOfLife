@@ -1,6 +1,44 @@
-/* Sets the web page's background color */
-body {
-  background-color: #CDCDCD
+body{
+  background-color: #444444;
+}
+
+.hex {
+  width: 28px;
+  height: 32px;
+  margin-left: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  float: left;
+  -webkit-clip-path: polygon(
+    50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%
+  );
+  -moz-clip-path: polygon(
+    50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%
+  );
+  -ms-clip-path: polygon(
+    50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%
+  );
+  clip-path: polygon(
+    50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%
+  ) border-box;
+}
+
+.off {
+  background: url(black.png) no-repeat 50% 50%;
+}
+.on {
+  background: url(red.png) no-repeat 50% 50%;
+}
+
+.row{
+  width: 594px;
+  margin-left: auto;
+  margin-right:auto;
+  margin-top: 30px;
+}
+
+.indent{
+  margin-left: 22px;
 }
 
 /* Sets the text format for any h1 headers throughout the web page */
@@ -8,7 +46,7 @@ h1 {
   margin: 0;
   font-size: 30px;
   font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;
-  color: #371881
+  color: #e89c39
 }
 
 /* Sets the format for the divider line in the web page */
@@ -24,32 +62,45 @@ hr {
    line-height: 0;
    clear: both;
    border: none;
-   border-top: 1px solid #371881;
-   border-bottom: 1px solid #371881;
+   border-top: 1px solid #999999;
+   border-bottom: 1px solid #999999;
 }
 
 /* Sets format for title specifically. */
 #title {
     text-align: center;
-    color: white;
-    text-shadow: -2px 0 #371881, 0 2px #371881, 2px 0 #371881, 0 -2px #371881;
+    color: #999999;
 }
 
-/* Sets aesthetic attributes of the canvas */
-#canvas_container {
-  padding-left: 0;
-  padding-right: 0;
-  margin-top: 0;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
-  border: solid 1px #555;
-  background-color: #eed;
-  box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
-  -moz-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
-  -webkit-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
-  -o-box-shadow: 0 0 10px 5px rgba(0,0,0,0.6);
-  display: block;
-  width: 1200px;
-  height: 600px;
+.button {
+  width: 138px;
+  background: #cccccc;
+  background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(#cccccc));
+  background: -webkit-linear-gradient(top, #cccccc, #cccccc);
+  background: -moz-linear-gradient(top, #cccccc, #cccccc);
+  background: -ms-linear-gradient(top, #cccccc, #cccccc);
+  background: -o-linear-gradient(top, #cccccc, #cccccc);
+  padding: 5px 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-shadow: rgba(0,0,0,.4) 0 1px 0;
+  color: #000000;
+  font-size: 17px;
+  font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+  text-decoration: none;
+  vertical-align: middle;
 }
+.button:hover {
+   border-top-color: #999999;
+   background: #444444;
+   color: #999999;
+   }
+.button:active {
+   border-top-color: #444444;
+   background: #444444;
+   }

@@ -1,40 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="star_widget.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="graphics.js"></script>
-    <!--
-    This loads the styles used via my .css file
-    -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="life.js"></script>
     <link rel="stylesheet" type="text/css" href="life.css">
-</head>
+  </head>
 
-<body>
-<!--
-Prints the welcome header to the webpage
--->
-<div id="welcome">
-  <h1 id="title">
-    Welcome to John Conway's Game of Life!
-  </h1>
-</div>
+  <body onload="$('#matrix').append(hexagonalGrid(function(i) {console.log('Select ' + i); }));">
 
-<hr id="divider">
+    <div id="welcome">
+      <h1 id="title">
+        Welcome to the Hexagonal Game of Life!
+      </h1>
+    </div>
 
-<!--
-define the HTML canvas element that will hold the graphical output
--->
-<div id="canvas_container">
-    <canvas id="canvas"></canvas>
-</div>
+    <hr id="divider">
 
-<!--
-execute the JavaScript
--->
-<script src="life.js"></script>
+    <div class="row">
+      <div id="matrix"></div>
+    </div>
+  </body>
 
-</body>
 </html>
